@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task Entry Form</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body ng-app="app">
+    <div class="container" ng-controller="TaskController" ng-cloak>
+      <table width="100%" class="table">
+        <tr>
+          <td>
+            <header><h1>Task List</h1></header>
+            <!-- first time greeting message -->
+            <p ng-hide="tasks.length">No tasks saved.</p>
+            
+            <!-- list of tasks -->
+            <div id="tasks">
+              <table width="100%" class="table table-striped">
+                <tr style="font-weight:bold;"> <td>Task Type</td> <td>Description</td> <td>Help</td> </tr>
+                <tr>
+                  <td>
+                    <div ng-repeat="task in tasks">
+                        <label> {{task.taskType}} </label>
+                    </div>
+                  </td>
+                  <td>
+                    <div ng-repeat="task in tasks">
+                        <label> {{task.description}} </label>
+                    </div>
+                  </td>
+                  <td>
+                    <div ng-repeat="task in tasks">
+                        <label> {{task.taskHelp}} </label>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <header><h2>Add New Task Entry</h2></header>
+            <!-- add task form -->
+            <form name="AddTaskForm">
+              <table class="table">
+                <tr>
+                  <td><label>Task Type: </label></td>
+                  <td><input ng-model="newTask.taskType" name="TaskType" type="text" required /> (Required) <br/></td>
+                </tr>
+                <tr>
+                  <td><label>Description: </label></td>
+                  <td><input ng-model="newTask.description" name="TaskDescription" type="text" /> <br/></td>
+                </tr>
+                <tr>
+                  <td><label>Task Help: </label></td>
+                  <td><input ng-model="newTask.taskHelp" name="TaskHelp" type="text" /><br/></td>
+                </tr>
+                <tr><td colspan="2"><input type="button" class="btn btn-primary" ng-click="addNewTask(newTask)" ng-disabled="AddTaskForm.TaskName.$invalid" value="Save Task"></td></tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script src="./vendor/angular.js"></script>
+    <script src="./vendor/angular-resource.js"></script>
+    <script src="./lb-services.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+1.  Requirements:
+
+    - Use case1 : Add new task type
+    - Use case2 : Show existing task types
+    
+    
+2.  Design:
+
+    2.1 - Overview: There are 2 use cases i'll implement. First is to add new tasks type and second is to show all existing task types.
+    
+    2.2 - Backend:  For backend side we will use mongodb. There will be one loopback model for above 2 use cases. That model is defined in task-type.json file.
+          Loopback json model:
+          {
+            "name": "TaskType",
+            "plural": "task_type",
+            "base": "PersistedModel",
+            "properties": {
+              "taskId": {
+                "type": "number",
+                "required": true
+              },
+              "taskType": {
+                "type": "string",
+                "required": true
+              },
+              "description": {
+                "type": "string"
+              },
+              "taskHelp": {
+                "type": "string"
+              }
+            },
+            "validations": [],
+            "acls": [],
+            "methods": []
+          }
+    
+    2.3 - Frontend: For frontend design we will use angularjs. There will be 2 tasks in frontend, one is to show all existing task types and other is to add new task type. There is one task_type.jpg image that have the frontend ui design for these use cases.
+    
+    2.4 - Non-functional Considerations:
+        # Concurrency:  Multiple users can see the list of task types and can add new task types at the same time. When one user create new task type, the database will not update and other users working with the same project do not see new tasks until he save that task. After he save that task, all other users can see that task after refresh the page.
+        
+        # Performance:  
+        
+        # Scalability:  Admin can create as many task types as we need and store in database.
+        
+    2.5 - Assumptions:
+          - Only admin will use this app. (these 2 use cases)
+          - Admin will be able to add new tasks and update those whenever required.
+          
+3.  Implementation Notes:
+    There are 2 tasks which needs to be implemented:
+    - Make loopback model for task types and test to fetching data from mongodb and add new tasks to mongodb through url using loopback's rest APIs.
+    - Make frontend that will have the feature to: 1) add new task type and 2) Show all existing task types.
+    
+4.  Testing: After these 2 use cases are completed, I'll test it to create new task types with dummy data and see all tasks list in frontend as well as via loopback's rest APIs.
+
+
+5.  Debugging: 
+
+6.  Deliverables:
+    There will be some auto generated loopback files like 'package.json', 'config.json', 'datasource.json', 'server.js' etc.
+    Also for 2 use cases there will be one loopback model 'task-type.json' for new task type, index.html and angularjs file for frontend ui.
+    
+7.  Effort estimate:
+    Time: 8 hours (2 days) starting from 7th aug 2014.
